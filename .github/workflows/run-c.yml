@@ -1,21 +1,22 @@
-name: Run C Program
+name: Validate Problem
 
 on:
   push:
     branches: [ main ]
 
 jobs:
-  build:
+  run-problem:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout repository
+      - name: Checkout
         uses: actions/checkout@v3
 
       - name: Install GCC
         run: sudo apt-get update && sudo apt-get install -y gcc
 
-      - name: Build C program
-        run: gcc file.c -o program
-
-      - name: Run Program
-        run: ./program
+      - name: Run Problem
+        run: |
+          cd languages/C/2025-11-14-example-problem
+          chmod +x run.sh
+          ./run.sh
