@@ -1,0 +1,23 @@
+{
+  "benchmark": "code_verifiers",
+  "name": "einstein-photon-32dd9e12",
+  "task_type": "code-generation",
+  "programming_language": [
+    "C"
+  ],
+  "solution_file_path": [
+    "solution.c"
+  ],
+  "test_file_path": [
+    "test.c"
+  ],
+  "execution_file_path": "run.sh",
+  "difficulty": "Medium",
+  "tags": [
+    "Algorithm",
+    "Data Structure"
+  ],
+  "timeout": 10,
+  "memory_limit": "256MB",
+  "num_test_cases": 13
+}

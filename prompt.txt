@@ -1,0 +1,107 @@
+**Solve this problem using C language**
+
+---
+
+## Problem: Reversible Segment Compressor 9A3Fbc12
+
+### Description:
+
+You are given an array of positive integers and an integer limit **S**. Your task is to perform a **two-phase transformation** on the array:
+
+1. **Forward Compression**, which compresses certain strictly-increasing segments into a single value using a specific scoring rule.
+2. **Reverse Uniqueness Validation**, which checks whether the resulting compressed array can be uniquely expanded back into the original array using only the compression rules.
+
+A submission is considered **valid** only if the compressed result has **exactly one** possible reversible interpretation. If multiple interpretations exist—or none exist—the result is **invalid**.
+
+The challenge requires careful implementation of segment scanning, longest-valid-segment selection, multi-step transformations, and an exhaustive but optimized uniqueness check. Poor handling of edge cases (sum thresholds, modulo behavior, segment overlaps) will produce incorrect results—this problem is intentionally crafted to stump advanced automated reasoning models.
+
+Your goal:
+**Return 0 if the compressed array is uniquely reversible, otherwise return 1.**
+
+---
+
+## Input:
+
+* An array `A` of size **N** (2 ≤ N ≤ 200), containing positive integers.
+* An integer **S** representing the maximum allowed segment sum.
+* All integers fit in 64-bit range.
+
+---
+
+## Output:
+
+An integer:
+
+* `0` → if the compressed array has **exactly one** valid reversible reconstruction
+* `1` → if reversible reconstruction is **ambiguous** or **impossible**
+
+---
+
+## Example 1:
+
+**Function:** `check_reversibility(A, N, S)`
+
+**Input:**
+A = [1, 2]
+N = 2
+S = 10
+
+**Output:**
+0
+
+**Explanation:**
+The segment [1,2] is strictly increasing and sum ≤ S, so it compresses to a single score.
+Only one valid original segment maps to that score, so reversal is unique.
+
+---
+
+## Example 2:
+
+**Function:** `check_reversibility(A, N, S)`
+
+**Input:**
+A = [1, 3, 5]
+N = 3
+S = 10
+
+**Output:**
+1
+
+**Explanation:**
+The entire array forms one compressible segment.
+However, multiple different strictly-increasing segments from other values could produce the same compressed score.
+Thus, the reverse mapping is **not unique**, so the result is invalid.
+
+---
+
+## Constraints:
+
+* 2 ≤ N ≤ 200
+* 1 ≤ A[i] ≤ 10⁶
+* 1 ≤ S ≤ 10⁹
+* Total sum fits within 64-bit signed integer
+* A segment is compressible if:
+
+  * It is strictly increasing
+  * Length ≥ 2
+  * Sum ≤ S
+* For each starting index, **the longest valid segment** must be compressed
+* Compression score formula:
+
+  ```
+  score = (max_element - min_element) + (sum % 7)
+  ```
+* Scanning always proceeds left-to-right, compressing the **leftmost** valid segment first
+* After all compressions, the compressed array must have **exactly one** valid preimage under the same rules
+
+---
+
+## Notes:
+
+* Implement both phases efficiently.
+* Reverse uniqueness requires enumerating all possible strictly-increasing segments consistent with the score.
+* If any compressed value has **0** or **more than 1** matching original segments, return **1**.
+* Use 64-bit integers for sums to avoid overflow.
+* Edge cases involving modulo 7 and overlapping candidate segments are critical for correctness.
+
+---
